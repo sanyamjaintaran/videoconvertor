@@ -1,1 +1,74 @@
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Audio To Video Converter</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>🎬 Audio To Video Converter</h1>
+
+        <p class="subtitle">
+            Convert Image + Audio into YouTube Ready Video
+        </p>
+
+        <div class="upload-box">
+
+            <label>Choose Image</label>
+
+            <input
+                type="file"
+                id="imageInput"
+                accept="image/*">
+
+        </div>
+
+        <div class="upload-box">
+
+            <label>Choose Audio</label>
+
+            <input
+                type="file"
+                id="audioInput"
+                accept="audio/*">
+
+        </div>
+
+        <div class="preview">
+
+            <div id="imagePreview">
+                No Image Selected
+            </div>
+
+            <div id="audioInfo">
+                No Audio Selected
+            </div>
+
+        </div>
+
+        <button id="createBtn">
+            Create Video
+        </button>
+
+    </div>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
