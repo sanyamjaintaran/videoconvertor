@@ -1,3 +1,38 @@
+import { FFmpeg } from "https://unpkg.com/@ffmpeg/ffmpeg@0.12.10/dist/esm/index.js";
+import { fetchFile, toBlobURL } from "https://unpkg.com/@ffmpeg/util@0.12.1/dist/esm/index.js";
+// =====================================
+// FFMPEG
+// =====================================
+
+const ffmpeg = new FFmpeg();
+
+let ffmpegLoaded = false;
+async function loadFFmpeg() {
+
+    if (ffmpegLoaded) return;
+
+    createBtn.innerHTML = "Downloading FFmpeg...";
+
+    const baseURL =
+        "https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm";
+
+    await ffmpeg.load({
+
+        coreURL: await toBlobURL(
+            `${baseURL}/ffmpeg-core.js`,
+            "text/javascript"
+        ),
+
+        wasmURL: await toBlobURL(
+            `${baseURL}/ffmpeg-core.wasm`,
+            "application/wasm"
+        ),
+
+    });
+
+    ffmpegLoaded = true;
+
+}
 // =========================
 // ELEMENTS
 // =========================
@@ -104,8 +139,27 @@ createBtn.addEventListener("click", async () => {
 
     createBtn.disabled = true;
 
-    createBtn.innerHTML = "Preparing...";
+    try {
 
+        await loadFFmpeg();
+
+        alert("✅ FFmpeg Loaded Successfully");
+
+    }
+
+    catch (err) {
+
+        console.error(err);
+
+        alert("FFmpeg Loading Failed");
+
+    }
+
+    createBtn.disabled = false;
+
+    createBtn.innerHTML = "Create Video";
+
+});
     // Fake Loading
 
     for (let i = 1; i <= 5; i++) {
