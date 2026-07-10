@@ -1,3 +1,13 @@
+const createBtn = document.getElementById("createBtn");
+
+let imageFile = null;
+let audioFile = null;
+
+createBtn.disabled = true;
+
+function checkFiles() {
+    createBtn.disabled = !(imageFile && audioFile);
+}
 const imageInput = document.getElementById("imageInput");
 
 const audioInput = document.getElementById("audioInput");
