@@ -1,73 +1,68 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Audio To Video Converter</title>
-
+    <title>Audio & Image to Video Converter</title>
     <link rel="stylesheet" href="style.css">
-
+    <!-- Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
-
 <body>
+    <div class="app-container glass-panel">
+        <header>
+            <h1>Video Generator</h1>
+            <p>Convert an Image and Audio into a 1080p MP4 Video completely in your browser.</p>
+        </header>
 
-<div class="container">
-
-    <div class="card">
-
-        <h1>🎬 Audio To Video Converter</h1>
-
-        <p class="subtitle">
-            Convert Image + Audio into YouTube Ready Video
-        </p>
-
-        <div class="upload-box">
-
-            <label>Choose Image</label>
-
-            <input
-                type="file"
-                id="imageInput"
-                accept="image/*">
-
-        </div>
-
-        <div class="upload-box">
-
-            <label>Choose Audio</label>
-
-            <input
-                type="file"
-                id="audioInput"
-                accept="audio/*">
-
-        </div>
-
-        <div class="preview">
-
-            <div id="imagePreview">
-                No Image Selected
+        <div class="upload-section">
+            <!-- Image Upload Box -->
+            <div class="upload-box" id="image-upload-box">
+                <input type="file" id="image-input" accept=".jpg, .jpeg, .png, .webp" hidden>
+                <label for="image-input" class="upload-label">
+                    <span class="icon">🖼️</span>
+                    <span class="text">Select Image</span>
+                    <span class="sub-text">(JPG, PNG, WEBP)</span>
+                </label>
+                <div class="preview-container hidden" id="image-preview-container">
+                    <img id="image-preview" src="" alt="Image Preview">
+                    <button class="remove-btn" id="remove-image">✕</button>
+                </div>
             </div>
 
-            <div id="audioInfo">
-                No Audio Selected
+            <!-- Audio Upload Box -->
+            <div class="upload-box" id="audio-upload-box">
+                <input type="file" id="audio-input" accept=".mp3, .wav, .m4a, .aac" hidden>
+                <label for="audio-input" class="upload-label">
+                    <span class="icon">🎵</span>
+                    <span class="text">Select Audio</span>
+                    <span class="sub-text">(MP3, WAV, M4A, AAC)</span>
+                </label>
+                <div class="preview-container hidden" id="audio-preview-container">
+                    <div class="audio-info">
+                        <span class="audio-name" id="audio-name">audio.mp3</span>
+                        <span class="audio-duration" id="audio-duration">00:00</span>
+                    </div>
+                    <button class="remove-btn" id="remove-audio">✕</button>
+                </div>
             </div>
-
         </div>
 
-        <button id="createBtn">
-            Create Video
-        </button>
+        <div class="status-section hidden" id="status-section">
+            <p id="status-text">Loading FFmpeg...</p>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <p class="percentage" id="progress-percentage">0%</p>
+        </div>
 
+        <div class="action-section">
+            <button id="generate-btn" class="gradient-btn" disabled>Generate Video</button>
+            <a id="download-link" class="hidden">Download Video</a>
+        </div>
     </div>
 
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/umd/ffmpeg.js"></script>
-<script type="module" src="app.js"></script></body>
+    <!-- The script is loaded as a module to support modern ES module imports for FFmpeg -->
+    <script type="module" src="script.js"></script>
+</body>
 </html>
